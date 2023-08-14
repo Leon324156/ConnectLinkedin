@@ -23,7 +23,7 @@ export async function Connect(driver: any, url: string, mess: string): Promise<v
           await messageInput.sendKeys(mess);
 
           const sendButton = await waitForCSS(driver, ConnectL.sendButton, 10000);
-          await driver.sleep(20000)
+          
           await sendButton.click()
           await driver.navigate().refresh();
           console.log("Connect successful")
@@ -40,7 +40,7 @@ export async function Connect(driver: any, url: string, mess: string): Promise<v
           const messageInput = await waitForCSS(driver, ConnectL.messageInput, 2000);
           await messageInput.sendKeys(mess);
           const sendButton = await waitForCSS(driver, ConnectL.sendButton, 10000);
-          await driver.sleep(20000)
+         
           await sendButton.click()
           
           await driver.navigate().refresh();
