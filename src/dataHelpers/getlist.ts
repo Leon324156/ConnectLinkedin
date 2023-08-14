@@ -18,7 +18,7 @@ export class Apollo {
         const payload = {
             api_key: this.apiKey,
             priority: ["medium"],
-            per_page: 190,
+            per_page: 3,
             open_factor_names: [
                 "task_types"
             ]
