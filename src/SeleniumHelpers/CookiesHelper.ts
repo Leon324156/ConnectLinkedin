@@ -20,4 +20,3 @@ export async function loadCookiesAndVisitPage(driver:WebDriver) {
         console.log(err);
     }
 }
-
