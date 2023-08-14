@@ -11,7 +11,4 @@ export async function waitForXpath(driver, selector, timeout) {
     const element = await driver.findElement(xpathLocator);
     return element;
 }
-export async function scrollToElement(driver, element) {
-    await driver.executeScript('arguments[0].scrollIntoView(true);', element);
-}
 //# sourceMappingURL=htmlHelper.js.map

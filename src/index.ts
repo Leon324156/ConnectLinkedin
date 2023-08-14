@@ -44,7 +44,7 @@ await driver.manage().window().maximize();
 await loadCookiesAndVisitPage(driver);
 await Connect(driver,lastTask.contact.linkedin_url,message)
 await driver.quit();
-console.log(lastTask.id)
+console.log(lastTask.contact.linkedin_url)
 await apollo.TaskPriorityChange(lastTask.id);
 // }
 

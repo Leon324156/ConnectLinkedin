@@ -7,7 +7,7 @@ export async function loadCookiesAndVisitPage(driver) {
             await driver.manage().addCookie(cookie);
         }
         await driver.navigate().refresh();
-        console.log("Loged In !");
+        console.log("Logged In!");
     }
     catch (err) {
         console.log(err);

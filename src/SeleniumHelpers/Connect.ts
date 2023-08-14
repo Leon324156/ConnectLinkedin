@@ -8,49 +8,38 @@ export async function Connect(driver: any, url: string, mess: string): Promise<v
         dropdown: "div[class='pv-top-card-v2-ctas ']>div>div>button[aria-label='More actions']",
         connect: "(//div[@class='artdeco-dropdown__content-inner']//span[text()='Connect'])[2]"
     };
-  await driver.get(`${url}`);
 
-  try {
-      const button = await waitForCSS(driver, ConnectL.button, 2000);
-      const buttonText = await button.getText();
-      console.log(buttonText,"buttontext")
-      if (buttonText === "Connect") {
-          await button.click();
-          const messagebutton = await waitForCSS(driver, ConnectL.messageButton, 10000);
-          messagebutton.click();
+    await driver.get(`${url}`);
 
-          const messageInput = await waitForCSS(driver, ConnectL.messageInput, 2000);
-          await messageInput.sendKeys(mess);
+    try {
+        const button = await waitForCSS(driver, ConnectL.button, 2000);
+        const buttonText = await button.getText();
 
-          const sendButton = await waitForCSS(driver, ConnectL.sendButton, 10000);
-          
-          await sendButton.click()
-          await driver.navigate().refresh();
-          console.log("Connect successful")
-          return;
-      } else {
-          const dropdown = await waitForCSS(driver, ConnectL.dropdown, 2000);
-          await dropdown.click();
-          const connect = await waitForXpath(driver, ConnectL.connect, 2000);
-          await connect.click();
-          
-          const messagebutton = await waitForCSS(driver, ConnectL.messageButton, 10000);
-          await messagebutton.click();
+        if (buttonText === "Connect") {
+            await button.click();
+        } else {
+            const dropdown = await waitForCSS(driver, ConnectL.dropdown, 2000);
+            await dropdown.click();
+            const connect = await waitForXpath(driver, ConnectL.connect, 2000);
+            await connect.click();
+        }
 
-          const messageInput = await waitForCSS(driver, ConnectL.messageInput, 2000);
-          await messageInput.sendKeys(mess);
-          const sendButton = await waitForCSS(driver, ConnectL.sendButton, 10000);
-         
-          await sendButton.click()
-          
-          await driver.navigate().refresh();
-          console.log("Connect successful")
-      }
+        const messageButton = await waitForCSS(driver, ConnectL.messageButton, 10000);
+        await messageButton.click();
 
-  } catch (error) {
-      console.log('Cannot find connect button');
-  }
+        const messageInput = await waitForCSS(driver, ConnectL.messageInput, 2000);
+        await messageInput.sendKeys(mess);
+
+        const sendButton = await waitForCSS(driver, ConnectL.sendButton, 10000);
+        await sendButton.click();
+        await driver.navigate().refresh();
+        console.log("Connect Successfully")
+
+    } catch (error) {
+        console.log('Cannot find connect button');
+    }
 }
+
 
 export async function getmess(firstname:string,organization_name:string): Promise<string> {
     const mess = `Hi ${firstname},\n` +
